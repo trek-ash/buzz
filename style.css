@@ -1,0 +1,168 @@
+	 @media only screen and (max-width: 820px) {
+   .message{
+      padding:10px; 
+      background-color: #0288D1;
+      margin: 8px;
+      color: white;
+      display: block;
+      border-radius:5px;
+      margin-left: 80%;
+      width: 20%;
+      word-wrap: break-word;
+      position: relative;
+      margin-right: 4% !important; 
+   }} 
+       @media only screen and (max-width: 530px) {
+   .message{
+      padding:10px; 
+      background-color: #0288D1;
+      margin: 8px;
+      color: white;
+      display: block;
+      border-radius:5px;
+      margin-left: 80%;
+      width: 20%;
+      word-wrap: break-word;
+       position: relative;
+      margin-right: 5% !important; 
+   }
+   }
+   .message{
+      padding:10px; 
+      background-color: #0288D1;
+      margin: 8px;
+      color: white;
+      display: block;
+      border-radius:5px;
+      margin-left: 77%;
+      width: 20%;
+      word-wrap: break-word;
+       position: relative;
+      margin-right: 2%; 
+   }
+   .cards{
+   			box-shadow: 1px 1px 1px black;
+   			padding: 5px;
+   			background-color: white;
+   			color: #0091EA;
+   			width: 90%;
+   			margin-left: 5%; 
+   			z-index: -1;
+   			
+   		}
+   	.cardshead{
+   		box-shadow: 1px 1px 2px black;
+   		position: relative;
+   		z-index: 2;
+   		color: white;
+   		padding: 5px;
+         background-color: #9C27B0;
+
+
+   	}	
+   	.head{
+   		text-align: center;
+   		padding: 13px;
+   		margin: 0px;
+   		background: linear-gradient(to bottom,#0091EA,#00B0FF);
+   		font-family: 'Gloria Hallelujah',cursive;
+   		color: white;
+   		padding-bottom: 20px !important;
+   	}	
+   	.buzzon{
+   		border-radius: 15px;
+   		background-color: white;
+   		box-shadow: 1px 1px 3px grey;
+   		padding-top: 10px !important;
+   		padding: 6px;
+   		margin: 7px;
+   	}
+   	.buzzactive{
+   		border-radius: 15px;
+   		background-color:#76FF03 ;
+   		color: black;
+   		box-shadow: 1px 1px 3px grey;
+   		padding-top: 10px !important;
+   		padding: 6px;
+   		margin: 7px;
+   	}
+   	.chattinghead{
+   		box-shadow: 1px 1px 2px black;
+   		color: white;
+   		text-align: center;
+   		padding: 5px;
+   		position: relative;
+         background-color: #9C27B0;
+
+   	}
+	.chatbody{
+		background-color: white;
+		color: #0091EA;
+		
+		box-shadow: 1px 1px 2px black;
+      z-index: -2; 
+	}
+	.from-control{
+		border-radius: 7px;
+		margin:0px;
+		width: 30%;
+		position:;
+	}
+	.btn{
+		border-radius: 17px;
+		box-shadow: 1px 1px 3px grey;
+		vertical-align: super;
+	}
+   .navbar-inverse{
+     background-color: transparent;
+     border: none;
+
+
+   }
+   .nav a{
+      color: white !important;
+      font-family: cursive,"Modak";
+   }
+   .nav a:hover{
+      color: black !important;
+      font-weight: 10;
+      transition-duration: .5s;
+   }
+   .input{
+      width: 85%;
+      padding: 5px;
+      border: none;
+      
+      
+   }
+   .writebuzz{
+      border-top: 1px solid grey; 
+      position: relative;
+      right: 0px;
+      bottom: 0px;
+      overflow-y: visible;
+   }
+   .chats{
+      height: 70vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+   }
+   .messager{
+      padding:10px; 
+      background-color: #00E676;
+      margin: 8px;
+      color: white;
+      display: block;
+      border-radius:5px;
+      width: 20%;
+      margin-left: 3%;
+      word-wrap: break-word;
+       position: relative;
+      margin-right: 5% !important; 
+   }
+   .hide{
+      display: none;
+   }
+   .show{
+      display: block;
+   }
