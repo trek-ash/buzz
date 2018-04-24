@@ -1,26 +1,33 @@
 $(document).ready(function(){
+	
+	
+
 	$('#chat').slideDown(1500);
 	var socket=io();
 	$msgDetail={};
 	$(document).on('submit','.messageform',()=>{
+		if($choices=="private")
 		var update="#input"+countshowcurrent;
+		else var update="#input";
 		$msg=$(update).val();
-		alert($msg);
+		//alert($msg);
 		$msgDetail={
 			Msg:$msg,
 			By:$usr,
 			To:$chatto
 		};
 		
-		if($choices=="private")
-		{
-		socket.emit('New private Message',$msgDetail);		
-		}
-		else if($choices=="group"){
-		socket.emit('New Message',$msgDetail);		
-		}
+		if($msg!=""){
+				if($choices=="private")
+				{
+				socket.emit('New private Message',$msgDetail);		
+				}
+				else if($choices=="group"){
+				socket.emit('New Message',$msgDetail);		
+				}}
 		$('.input').val('');
-
+		
+		  
 		//For one to one chat
 		//socket.emit('join', $chatto);
 		
@@ -77,7 +84,35 @@ $(document).ready(function(){
 
 		$('input[name=chatchoice]:checked').val('');
 		
+		
+		if($choices=="group"){
+			
+		var groupchatareahtml=`<div  class="chatroom " >
+					<div class="chattinghead" >
+						<h4>Chat Messages</h4>
+					</div>
+					<div class="chatbody" ng-app="myApp" ng-controller="message">				
+					<div class="chats chatmessages" >
+				
+					</div>	
+					
+					<div class="writebuzz">
+					<form class="messageform" action="">
+					<textarea rows="3" cols="40" class="input" id="input" placeholder="Write Message" ng-model="message1"></textarea>
+					
+					<button type="submit" name="send" class="btn-primary input btn-lg" ng-click="display(message1)" style="width: 10%;float:right;border-radius: 60px;color: #9C27B0;background-color: transparent;margin-right: 3%">
+					<i class="material-icons" style="font-size: 6vh">send</i>
+					</button>
+					</form>
+					</div>
+
+					</div>
+					</div>`;	
+		$('#chatarea').html(groupchatareahtml);
+
+		}
 		return false;
+
 	});
 
 	$('.UserForm').submit(()=>{
@@ -110,7 +145,6 @@ $(document).ready(function(){
 	socket.on('New Users',(data)=>{
 		var html='';
 		var chatareahtml='';
-		
 		for(i=0;i<data.length;i++)
 		{	
 
@@ -146,6 +180,7 @@ $(document).ready(function(){
 
 					</div>
 					</div>`;
+			
 			if(html!='')		
 			$(".nonea").fadeOut(0);
 			else $(".nonea").fadeIn(0);	
@@ -153,15 +188,22 @@ $(document).ready(function(){
 
 		}
 		$('#activeUsers').html(html);
+		if($choices=="private")
 		$('#chatarea').html(chatareahtml);
+	
+		
 	});
 	
 	socket.on('chat message', function(msg){
 		//alert notification
-		var chatid="#chat"+countshowcurrent;
-		
-		
-		var chatidto=".chat"+msg.By;
+		if($choices=="private"){
+				var chatid="#chat"+countshowcurrent;
+				var chatidto=".chat"+msg.By;
+			}
+		else {
+				var chatid=".chatmessages";
+				var chatidto=".chatmessages";
+		}
 		//alert(chatidto);
 		
 
@@ -183,7 +225,7 @@ $(document).ready(function(){
 		</div>`).appendTo(chatidto);
 		
 	}
-	
+	$(".chats").animate({"scrollTop": $(".chats")[0].scrollHeight}, "fast");
 
 		
     });
@@ -209,7 +251,7 @@ $(document).ready(function(){
 			$(findshow).addClass("hide");
 		}
 	}
-	}else var html=`Chat messages`;
+	}
 	
 	
 	$(".chatroom").fadeIn(1000);
