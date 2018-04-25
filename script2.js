@@ -3,7 +3,8 @@ $(document).ready(function(){
 	
 
 	$('#chat').slideDown(1500);
-	var socket=io();
+	var socket = io.connect(window.location.hostname);
+	
 	$msgDetail={};
 	$(document).on('submit','.messageform',()=>{
 		if($choices=="private")
