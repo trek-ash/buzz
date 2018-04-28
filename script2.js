@@ -3,8 +3,7 @@ $(document).ready(function(){
 	
 
 	$('#chat').slideDown(1500);
-	var socket = io.connect(window.location.hostname);
-	
+	var socket=io();
 	$msgDetail={};
 	$(document).on('submit','.messageform',()=>{
 		if($choices=="private")
@@ -74,7 +73,7 @@ $(document).ready(function(){
 		$("#Lsoldier").css({"opacity":"0.6"});	
 		$("#Lteacher").css({"opacity":"0.6"});	
 	});
-	
+	var $choices="";
 	$('.choiceform').submit(()=>{
 		
 		$choices=$('input[name=chatchoice]:checked').val();
@@ -110,8 +109,11 @@ $(document).ready(function(){
 					</div>
 					</div>`;	
 		$('#chatarea').html(groupchatareahtml);
-
 		}
+		if($choices=="private") {
+				$('#chatarea').html(chatareahtml);
+				
+			}
 		return false;
 
 	});
@@ -142,10 +144,11 @@ $(document).ready(function(){
 	});
 	var countshow=0;
 	var count=0;
+	var chatareahtml='';
 	var users=new Set();
 	socket.on('New Users',(data)=>{
 		var html='';
-		var chatareahtml='';
+		chatareahtml='';
 		for(i=0;i<data.length;i++)
 		{	
 
@@ -185,18 +188,22 @@ $(document).ready(function(){
 			if(html!='')		
 			$(".nonea").fadeOut(0);
 			else $(".nonea").fadeIn(0);	
-			}
+			}	
+				if ($choices=="private") 
+				$('#chatarea').html(chatareahtml);
+				
+			
 
 		}
 		$('#activeUsers').html(html);
-		if($choices=="private")
-		$('#chatarea').html(chatareahtml);
+		
 	
 		
 	});
 	
 	socket.on('chat message', function(msg){
 		//alert notification
+
 		if($choices=="private"){
 				var chatid="#chat"+countshowcurrent;
 				var chatidto=".chat"+msg.By;
@@ -239,10 +246,10 @@ $(document).ready(function(){
 	if($choices=="private")
 	{
 		
-	for(var j=0;j<=countshow;j++)
+	for(var j=1;j<=countshow;j++)
 	{ var findshow="#co"+j;
 		if(j==showthis)
-		{
+		{	
 			$(findshow).fadeIn(1000);
 			$(findshow).removeClass("hide");
 			
